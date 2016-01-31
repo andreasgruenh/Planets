@@ -11,6 +11,11 @@ body, html {
   z-index: 2;
 }
 
+#command-container label {
+  float: left;
+  margin: 0 20px;
+}
+
 canvas {
   background-color: blue;
   position: absolute;
