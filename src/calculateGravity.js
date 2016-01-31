@@ -2,7 +2,7 @@ const _ = require('lodash');
 
 let gravityConstant;
 module.exports = function calculateSpeedForGravityOnCircles(circles, _gravityConstant_) {
-  gravityConstant = _gravityConstant_;
+  gravityConstant = _gravityConstant_ / 10;
   _.forEach(circles, c => calculateSpeedForGravityOnCircle(c, circles));
 };
 
@@ -26,9 +26,9 @@ function calcGravityBetweenAAndB(circleA, circleB) {
     x: xDistance / distance,
     y: yDistance / distance
   };
-  let gravityForce  = gravityConstant * (circleA.mass * circleB.mass) / Math.pow(distance, 2);
+  let gravityForce = gravityConstant * (circleA.mass * circleB.mass) / Math.pow(distance, 2);
   let xAccA = gravityForce * direction.x / circleA.mass;
-  let yAccA = gravityForce * direction.y / circleB.mass;
+  let yAccA = gravityForce * direction.y / circleA.mass;
   circleA.speedX -= xAccA;
   circleA.speedY -= yAccA;
 }

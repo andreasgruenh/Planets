@@ -1,5 +1,6 @@
 body, html {
     height: 100%;
+    font-family: Tahoma;
     margin: 0;
     overflow: hidden;
     padding: 0;
@@ -12,11 +13,12 @@ body, html {
 }
 
 #command-container label {
+  color: white;
   float: left;
   margin: 0 20px;
 }
 
 canvas {
-  background-color: blue;
+  background-color: black;
   position: absolute;
 }

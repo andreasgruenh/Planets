@@ -1,6 +1,12 @@
 const _ = require('lodash');
 
+let animationSpeed = 2;
+let isRunning = false;
+let previous;
+
 module.exports = {
+  get animationSpeed() { return animationSpeed; },
+  set animationSpeed(speed) { animationSpeed = speed; },
   addObserver,
   removeObserver,
   start,
@@ -10,9 +16,6 @@ module.exports = {
 
 const observers = [];
 const animate = window.requestAnimationFrame;
-
-let isRunning = false;
-let previous;
 
 function addObserver(fn) {
   observers.push(fn);
@@ -45,7 +48,7 @@ function tick(end) {
   }
   let duration = (end - previous) / (1000 / 60);
   previous = end;
-  notifyObservers(duration);
+  notifyObservers(duration / (10 / animationSpeed));
   if(isRunning) animate(tick);
 }
 

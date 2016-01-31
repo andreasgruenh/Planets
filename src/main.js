@@ -8,15 +8,26 @@ const _ = require('lodash'),
       windowDimension = require('./windowDimensionObservable');
 
 const animateCheckbox = document.getElementById('animate-checkbox'),
+      animationSpeedInput = document.getElementById('animation-speed'),
       frictionConstInput = document.getElementById('friction-constant'),
       gravityConstInput = document.getElementById('gravity-constant'),
       planetCountInput = document.getElementById('planet-count-input'),
       resetButton = document.getElementById('reset-button');
 
 let planets = [];
-let planetCount, isAnimating, frictionConst, gravityConst;
+let planetCount, animationSpeed, isAnimating, frictionConst, gravityConst;
 
 animateCheckbox.addEventListener('change', updateSettings);
+animationSpeedInput.addEventListener('keydown', e => {
+  if(animationSpeedInput.value === '') return;
+  if(e.keyCode === 38) animationSpeed += 0.5;
+  if(e.keyCode === 40) animationSpeed -= 0.5;
+  if(e.keyCode === 38 || e.keyCode === 40) {
+    animationSpeedInput.value = parseFloat(animationSpeed);
+    e.preventDefault();
+  }
+  updateSettings();
+});
 frictionConstInput.addEventListener('keydown', e => {
   if(frictionConstInput.value === '') return;
   if(e.keyCode === 38) frictionConst += 0.5;
@@ -63,6 +74,7 @@ function onTick(frameDelta) {
 
 function updateSettings() {
   updateAnimation();
+  updateAnimationSpeed();
   updateFriction();
   updateGravity();
 }
@@ -84,6 +96,11 @@ function updateAnimation() {
   let isChecked = animateCheckbox.checked;
   if(isChecked) animation.start();
   else animation.stop();
+}
+
+function updateAnimationSpeed() {
+  animationSpeed = parseFloat(animationSpeedInput.value);
+  animation.animationSpeed = animationSpeed;
 }
 
 function updateFriction() {
