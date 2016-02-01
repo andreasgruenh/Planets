@@ -18,7 +18,7 @@ let planets = [];
 let planetCount, animationSpeed, isAnimating, frictionConst, gravityConst;
 
 animateCheckbox.addEventListener('change', updateSettings);
-animationSpeedInput.addEventListener('keydown', e => {
+animationSpeedInput.addEventListener('keyup', e => {
   if(animationSpeedInput.value === '') return;
   if(e.keyCode === 38) animationSpeed += 0.5;
   if(e.keyCode === 40) animationSpeed -= 0.5;
@@ -28,7 +28,7 @@ animationSpeedInput.addEventListener('keydown', e => {
   }
   updateSettings();
 });
-frictionConstInput.addEventListener('keydown', e => {
+frictionConstInput.addEventListener('keyup', e => {
   if(frictionConstInput.value === '') return;
   if(e.keyCode === 38) frictionConst += 0.5;
   if(e.keyCode === 40) frictionConst -= 0.5;
@@ -38,7 +38,7 @@ frictionConstInput.addEventListener('keydown', e => {
   }
   updateSettings();
 });
-gravityConstInput.addEventListener('keydown', e => {
+gravityConstInput.addEventListener('keyup', e => {
   if(gravityConstInput.value === '') return;
   if(e.keyCode === 38) gravityConst += 0.5;
   if(e.keyCode === 40) gravityConst -= 0.5;
@@ -48,7 +48,7 @@ gravityConstInput.addEventListener('keydown', e => {
   }
   updateSettings();
 });
-planetCountInput.addEventListener('keydown', e => {
+planetCountInput.addEventListener('keyup', e => {
   if(planetCountInput.value === '') return;
   if(e.keyCode === 38) planetCount += 1;
   if(e.keyCode === 40) planetCount -= 1;
